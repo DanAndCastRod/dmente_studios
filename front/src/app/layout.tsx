@@ -21,6 +21,8 @@ export const metadata: Metadata = {
 
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import { BookingProvider } from "@/components/BookingContext";
+import BookingModal from "@/components/BookingModal";
 
 export default function RootLayout({
   children,
@@ -32,11 +34,14 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${syncopate.variable} antialiased min-h-screen flex flex-col`}
       >
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
+        <BookingProvider>
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
+          <BookingModal />
+        </BookingProvider>
       </body>
     </html>
   );

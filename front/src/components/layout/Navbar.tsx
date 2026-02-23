@@ -3,9 +3,11 @@
 import Link from 'next/link';
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
+import { useBooking } from '../BookingContext';
 
 export default function Navbar() {
     const [isOpen, setIsOpen] = useState(false);
+    const { openBooking } = useBooking();
 
     return (
         <nav className="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-surface-dark/50">
@@ -30,12 +32,12 @@ export default function Navbar() {
                         <Link href="#estudio" className="text-text-main hover:text-accent-cyan transition-colors text-sm uppercase tracking-widest font-semibold">El Estudio</Link>
                         <Link href="#contacto" className="text-text-main hover:text-accent-cyan transition-colors text-sm uppercase tracking-widest font-semibold">Contacto</Link>
 
-                        <Link
-                            href="#reservas"
-                            className="bg-primary-neon text-white px-6 py-2.5 rounded-sm font-display text-sm tracking-wide glow-btn"
+                        <button
+                            onClick={openBooking}
+                            className="bg-primary-neon text-white px-6 py-2.5 rounded-sm font-display text-sm tracking-wide glow-btn cursor-pointer"
                         >
                             Reserva tu Sesión
-                        </Link>
+                        </button>
                     </div>
 
                     {/* Mobile menu button */}
@@ -58,13 +60,12 @@ export default function Navbar() {
                         <Link href="#equipamiento" className="block text-text-main hover:text-accent-cyan text-sm uppercase tracking-widest font-semibold" onClick={() => setIsOpen(false)}>Equipamiento</Link>
                         <Link href="#estudio" className="block text-text-main hover:text-accent-cyan text-sm uppercase tracking-widest font-semibold" onClick={() => setIsOpen(false)}>El Estudio</Link>
                         <Link href="#contacto" className="block text-text-main hover:text-accent-cyan text-sm uppercase tracking-widest font-semibold" onClick={() => setIsOpen(false)}>Contacto</Link>
-                        <Link
-                            href="#reservas"
-                            className="block w-full text-center bg-primary-neon text-white px-6 py-3 rounded-sm font-display text-sm tracking-wide glow-btn mt-6"
-                            onClick={() => setIsOpen(false)}
+                        <button
+                            onClick={() => { setIsOpen(false); openBooking(); }}
+                            className="block w-full text-center bg-primary-neon text-white px-6 py-3 rounded-sm font-display text-sm tracking-wide glow-btn mt-6 cursor-pointer"
                         >
                             Reserva tu Sesión
-                        </Link>
+                        </button>
                     </div>
                 </div>
             )}

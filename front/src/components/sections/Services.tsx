@@ -1,8 +1,12 @@
+"use client";
+
 import Image from 'next/image';
-import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { useBooking } from '../BookingContext';
 
 export default function Services() {
+    const { openBooking } = useBooking();
+
     return (
         <section id="servicios" className="py-24 bg-bg-abyss relative">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -36,10 +40,10 @@ export default function Services() {
                             <p className="text-gray-400 mb-6 font-body leading-relaxed">
                                 Rompe el silencio. Acústica impecable y backline profesional para que tu banda sude la camiseta antes del show.
                             </p>
-                            <Link href="#reservas" className="inline-flex items-center text-accent-cyan font-bold tracking-widest text-sm hover:text-white transition-colors gap-2">
+                            <button onClick={openBooking} className="inline-flex items-center text-accent-cyan font-bold tracking-widest text-sm hover:text-white transition-colors gap-2 cursor-pointer">
                                 RESERVAR BLOQUE
                                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
-                            </Link>
+                            </button>
                         </div>
                     </div>
 
@@ -64,10 +68,10 @@ export default function Services() {
                             <p className="text-gray-400 mb-6 font-body leading-relaxed">
                                 Precisión milimétrica. Desde la captura hasta el máster final. El entorno perfecto para materializar tus ideas musicales.
                             </p>
-                            <Link href="#reservas" className="inline-flex items-center text-primary-neon font-bold tracking-widest text-sm hover:text-white transition-colors gap-2">
+                            <button onClick={openBooking} className="inline-flex items-center text-primary-neon font-bold tracking-widest text-sm hover:text-white transition-colors gap-2 cursor-pointer">
                                 AGENDAR SESIÓN
                                 <ArrowRight size={16} className="group-hover:translate-x-2 transition-transform" />
-                            </Link>
+                            </button>
                         </div>
                     </div>
 
