@@ -27,8 +27,6 @@ dmente_studios/
 │   │   │   ├── page.tsx          # Composición de secciones
 │   │   │   └── globals.css       # Design System (Tailwind v4 tokens)
 │   │   └── components/
-│   │       ├── BookingContext.tsx # Estado global del modal de reservas
-│   │       ├── BookingModal.tsx   # Modal de selección de servicio
 │   │       ├── layout/
 │   │       │   ├── Navbar.tsx    # Barra de navegación fija
 │   │       │   └── Footer.tsx    # Footer con CTAs y redes
@@ -60,7 +58,8 @@ dmente_studios/
 
 | Token | Valor | Uso |
 |---|---|---|
-| `primary-neon` | `#5B2C6F` | Botones, CTAs principales, glows |
+| `primary-neon` | `#5B2C6F` | Fondos de botones, bordes, glows (nunca como color de texto) |
+| `primary-soft` | `#B983CC` | Violeta para texto sobre fondo oscuro (contraste AA) |
 | `bg-abyss` | `#0A0A0A` | Fondo global (Dark Mode estricto) |
 | `surface-dark` | `#1A1A1A` | Tarjetas, modales, secciones |
 | `accent-cyan` | `#00FFFF` | Badges, highlights, hover secundario |
@@ -72,31 +71,26 @@ dmente_studios/
 
 **Efectos:**
 - Noise grain al 3% sobre fondo (textura analógica)
-- Glow en hover (box-shadow neón) en lugar de cambios sólidos de color
+- Glow en hover: un pseudo-elemento con sombra que solo cambia de opacidad (las transiciones animan únicamente `transform` y `opacity`)
 
 ---
 
-## 📅 Sistema de Reservas (Google Calendar)
+## Reservas (provisional, desde 2026-11-09)
 
-El sistema de reservas usa **Google Calendar Appointment Scheduling**.
+Por ahora no hay reserva en línea. Todos los llamados a reservar llevan a un mensaje
+directo de Instagram (`https://ig.me/m/dmenteestudio`), y el perfil
+(`https://www.instagram.com/dmenteestudio/`) aparece como contacto.
 
-### Flujo del usuario:
-1. Hace clic en cualquier CTA de reserva (Navbar, Services, Booking section)
-2. Se abre un **modal centralizado** con 2 opciones:
-   - **Bloque de Ensayo** (2 horas)
-   - **Sesión de Producción** (4 horas)
-3. Al seleccionar, se abre Google Calendar en una nueva pestaña
-4. El usuario agenda su cita y recibe confirmación por email
+- Los canales viven en `front/src/lib/contacto.ts`. Solo se agregan canales que el estudio
+  haya confirmado (la biografía pública de Instagram no publica teléfono, WhatsApp, correo
+  ni dirección a 2026-11-09).
+- El modal de Google Calendar se retiró: sus enlaces eran de ejemplo y daban "Cita no
+  encontrada".
+- El sitio no publica horarios, duraciones de bloque ni tarifas hasta que el estudio las
+  confirme.
 
-### ⚠️ Configuración requerida:
-Editar `front/src/components/BookingModal.tsx` (líneas 10-13) con las URLs reales del Appointment Schedule de Google Calendar:
-
-```typescript
-const GOOGLE_CAL_ENSAYO =
-  "https://calendar.google.com/calendar/appointments/schedules/TU_ID_ENSAYO";
-const GOOGLE_CAL_PRODUCCION =
-  "https://calendar.google.com/calendar/appointments/schedules/TU_ID_PRODUCCION";
-```
+La imagen para compartir (`front/public/og-dmente.jpg`, 1200x630) se genera desde
+`front/scripts/og-image.html`, solo con la tipografía y los colores del sitio.
 
 ---
 
