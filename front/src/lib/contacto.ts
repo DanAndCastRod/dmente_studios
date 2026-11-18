@@ -18,6 +18,10 @@ export const INSTAGRAM_PERFIL = `https://www.instagram.com/${INSTAGRAM_USUARIO}/
  */
 export const INSTAGRAM_MENSAJE = `https://ig.me/m/${INSTAGRAM_USUARIO}`;
 
-export const CIUDAD = "Pereira, Risaralda, Colombia";
+/** Nombre corto de la ciudad, para titulares, cintas y metadatos. */
+export const CIUDAD_CORTA = "Pereira";
 
+export const CIUDAD = `${CIUDAD_CORTA}, Risaralda, Colombia`;
+
+/** Unica mencion de Releven en el sitio: "Casa de Releven", al pie. */
 export const RELEVEN_URL = "https://releven.cc";
